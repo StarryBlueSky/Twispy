@@ -31,6 +31,3 @@ class API(object):
 				result = self._do(api["method"], api["url"], data)
 				return AttrDict(result)
 		return func
-
-class ResponseBody:
-	pass
