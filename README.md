@@ -1,2 +1,2 @@
-# SecretTwitterAPIWrapper
-Twitter殺す
+# Twispy
+A Twitter Private API Wrapper.
