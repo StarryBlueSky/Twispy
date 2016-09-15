@@ -27,7 +27,6 @@ class API(object):
 						data[key] = kwargs[key]
 					else:
 						data[key] = array[1]
-				print(data)
 				result = self._do(api["method"], api["url"], data)
 				return AttrDict(result)
 		return func
