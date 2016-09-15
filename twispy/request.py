@@ -31,7 +31,8 @@ class Request:
 		if method.upper() == "GET":
 			request = requests.get(url, params=data, headers=header)
 		else:
-			request = requests.post(url, data=data, headers=header)
+			dataString = "&".join(["{key}={value}".format(key=escape(x), value=escape(y)) for x, y in data.items()])
+			request = requests.post(url, data=dataString, headers=header)
 		result = json.loads(request.text)
 
 		self.header = header
