@@ -3,9 +3,9 @@
     "method": "GET",
     "url": "https://api.twitter.com/1.1/news/top.json",
     "data": [
-      {"country_code": "JP"},
-      {"lang": "ja"},
-      {"max_results": "30"}
+      ["country_code", "JP"],
+      ["lang", "ja"],
+      ["max_results", "30"]
     ]
   }
 }
