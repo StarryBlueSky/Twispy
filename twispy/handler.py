@@ -1,6 +1,7 @@
 # coding=utf-8
 import json
 import os
+from collections import OrderedDict
 
 from attrdict import AttrDict
 
@@ -19,10 +20,14 @@ class API(object):
 		def func(**kwargs):
 			if name in api_dict:
 				api = api_dict[name]
-				data = api["data"]
-				for key, value in api["data"]:
+				data = OrderedDict()
+				for array in api["data"]:
+					key = array[0]
 					if key in kwargs:
 						data[key] = kwargs[key]
+					else:
+						data[key] = array[1]
+				print(data)
 				result = self._do(api["method"], api["url"], data)
 				return AttrDict(result)
 		return func
