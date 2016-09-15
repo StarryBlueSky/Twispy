@@ -3,6 +3,7 @@ import binascii
 import datetime
 import hashlib
 import hmac
+import json
 import time
 import urllib.parse
 import uuid
@@ -10,6 +11,8 @@ from collections import OrderedDict
 
 
 def escape(text):
+	if isinstance(text, dict):
+		text = json.dumps(text, ensure_ascii=False).replace(" ", "")
 	return urllib.parse.quote(text, safe="~")
 
 def getCurrentEpochTime():
@@ -30,6 +33,8 @@ def makeHeader(url, uuid=None, deviceId=None):
 	header["Accept-Language"] = "ja"
 	header["Accept-Encoding"] = "gzip, deflate"
 	header["X-Twitter-Client-DeviceID"] = deviceId if deviceId else getUUID()
+	header["Content-Type"] = "application/x-www-form-urlencoded"
+	header["Content-Length"] = None
 	header["User-Agent"] = "Twitter-iPhone/6.59.3 iOS/9.3.3 (Apple;iPhone8,2;;;;;1)"
 	header["X-Twitter-Client-Limit-Ad-Tracking"] = "1"
 	header["X-Twitter-API-Version"] = "5"
@@ -49,7 +54,7 @@ def makeAuthorizationData(ck, at):
 
 def makeSignatureBase(method, header, data, authorizationData, ck, at):
 	signatureBase = []
-	if (method.upper() == "POST" and header.get("Content-Type") == "application/x-www-form-urlencoded") or method.upper() != "POST":
+	if (method.upper() == "POST" and header["Content-Type"] == "application/x-www-form-urlencoded") or method.upper() != "POST":
 		for key, value in data.items():
 			signatureBase.append([escape(key), escape(value)])
 

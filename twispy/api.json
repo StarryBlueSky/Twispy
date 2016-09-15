@@ -1,11 +1,94 @@
 {
   "news_top": {
+    "description": "ニュースタブのニュースを取得します。",
     "method": "GET",
     "url": "https://api.twitter.com/1.1/news/top.json",
     "data": [
       ["country_code", "JP"],
-      ["lang", "ja"],
-      ["max_results", "30"]
+      ["lang"        , "ja"],
+      ["max_results" , "30"]
+    ]
+  },
+  "conversation_show": {
+    "description": "会話を取得します。",
+    "method": "GET",
+    "url": "https://api.twitter.com/1.1/conversation/show.json",
+    "data": [
+      ["cards_platform"        , "iPhone-13"],
+      ["contributor_details"   , "1"],
+      ["count"                 , "20"],
+      ["ext"                   , "altText,stickerInfo,mediaRestrictions"],
+      ["id"                    , null],
+      ["include_blocked_by"    , "true"],
+      ["include_blocking"      , "true"],
+      ["include_cards"         , "1"],
+      ["include_entities"      , "1"],
+      ["include_media_features", "true"],
+      ["include_my_retweet"    , "1"],
+      ["include_user_entities" , "true"]
+    ]
+  },
+  "timeline_home": {
+    "description": "タイムラインを取得します。",
+    "method": "GET",
+    "url": "https://api.twitter.com/1.1/timeline/home.json",
+    "data": [
+      ["autoplay_enabled"               , "true"],
+      ["cards_platform"                 , "iPhone-13"],
+      ["contributor_details"            , "1"],
+      ["count"                          , "100"],
+      ["earned"                         , "true"],
+      ["ext"                            , "altText,stickerInfo,mediaRestrictions"],
+      ["include_blocked_by"             , "true"],
+      ["include_blocking"               , "true"],
+      ["include_cards"                  , "1"],
+      ["include_entities"               , "1"],
+      ["include_media_features"         , "true"],
+      ["include_my_retweet"             , "1"],
+      ["include_tweet_pivots"           , "true"],
+      ["include_user_entities"          , "true"],
+      ["jit_enabled"                    , "true"],
+      ["lang"                           , "ja"],
+      ["last_ad_pool_refresh_epoch_ms"  , "0"],
+      ["num_unfilled_ad_slots_available", "0"],
+      ["pc"                             , "true"],
+      ["request_context"                , "tweet"],
+      ["up_cursor"                      , false],
+      ["user_id"                        , null],
+      ["username"                       , null]
+    ]
+  },
+  "statuses_update": {
+    "description": "ツイートを投稿します。",
+    "method": "POST",
+    "url": "https://api.twitter.com/1.1/statuses/update.json",
+    "data": [
+      ["card_uri"               , false],
+      ["cards_platform"         , "iPhone-13"],
+      ["include_cards"          , "1"],
+      ["include_entities"       , "1"],
+      ["include_media_features" , "true"],
+      ["include_my_retweet"     , "1"],
+      ["include_user_entities"  , "true"],
+      ["status"                 , null]
+    ]
+  },
+  "cards_create": {
+    "description": "投票を発行します。",
+    "method": "POST",
+    "url": "https://caps.twitter.com/v2/cards/create.json",
+    "data": [
+      ["card_data",
+        {
+          "twitter:string:choice1_label": null,
+          "twitter:string:choice2_label": null,
+          "twitter:string:choice3_label": false,
+          "twitter:string:choice4_label": false,
+          "twitter:api:api:endpoint":"1",
+          "twitter:card":"poll2choice_text_only",
+          "twitter:long:duration_minutes":1440
+        }
+      ]
     ]
   }
 }

@@ -29,9 +29,11 @@ class Request:
 		header["Authorization"] = makeAuthorizationHeader(authorizationData)
 
 		if method.upper() == "GET":
+			del header["Content-Type"], header["Content-Length"]
 			request = requests.get(url, params=data, headers=header)
 		else:
 			dataString = "&".join(["{key}={value}".format(key=escape(x), value=escape(y)) for x, y in data.items()])
+			header["Content-Length"] = str(len(dataString))
 			request = requests.post(url, data=dataString, headers=header)
 		result = json.loads(request.text)
 
