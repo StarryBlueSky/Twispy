@@ -27,7 +27,10 @@ class API(object):
 						data[key] = kwargs[key]
 					else:
 						if not array[1]:
-							raise Exception("{} must have non-null parameter.".format(key))
+							if array[1] == False:
+								continue
+							if array[1] == None:
+								raise Exception("{} must have non-null parameter.".format(key))
 						data[key] = array[1]
 				result = self._do(api["method"], api["url"], data)
 				return AttrDict(result)
