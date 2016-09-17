@@ -28,10 +28,12 @@ class Request:
 
 		if method.upper() == "GET":
 			request = requests.get(url, params=data, headers=header)
-		else:
+		elif method.upper() == "POST":
 			dataString = "&".join(["{key}={value}".format(key=escape(x), value=escape(y)) for x, y in data.items()])
 			header["Content-Length"] = str(len(dataString))
 			request = requests.post(url, data=dataString, headers=header)
+		else:
+			raise NotImplementedError("This method was not supported.")
 		result = json.loads(request.text)
 
 		self.header = header
