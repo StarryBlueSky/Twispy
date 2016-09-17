@@ -20,18 +20,24 @@ class API(object):
 		def func(**kwargs):
 			if name in api_dict:
 				api = api_dict[name]
+
 				data = OrderedDict()
 				for array in api["data"]:
-					key = array[0]
+					key, value = array
+					if value == False:
+						# optional argument
+						continue
+					if value == None:
+						# necessary argument
+						raise Exception("{} must have non-null parameter.".format(key))
+					data[key] = value
+
 					if key in kwargs:
 						data[key] = kwargs[key]
-					else:
-						if not array[1]:
-							if array[1] == False:
-								continue
-							if array[1] == None:
-								raise Exception("{} must have non-null parameter.".format(key))
-						data[key] = array[1]
+
 				result = self._do(api["method"], api["url"], data, headerType=api["headerType"])
 				return AttrDict(result)
+
+			raise AttributeError("No such a method.")
+
 		return func
