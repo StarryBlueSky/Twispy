@@ -21,17 +21,19 @@ class API(object):
 
 				data = OrderedDict()
 				for array in api["data"]:
-					key, value = array[0:1]
-					if value == False:
-						# optional argument
-						continue
-					if value == None:
-						# necessary argument
-						raise Exception("{} must have non-null parameter.".format(key))
+					key, value = array[0:2]
 					data[key] = value
 
 					if key in kwargs:
 						data[key] = str(kwargs[key])
+
+					if data[key] == False:
+						# optional argument
+						del data[key]
+						continue
+					if data[key] == None:
+						# necessary argument
+						raise Exception("{} must have non-null parameter.".format(key))
 
 				result = self._do(api["method"], api["url"], data, headerType=api["headerType"], authorizationType=api["authorizationType"])
 				return result
