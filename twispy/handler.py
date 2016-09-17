@@ -31,11 +31,11 @@ class API(object):
 					data[key] = value
 
 					if key in kwargs:
-						data[key] = kwargs[key]
+						data[key] = str(kwargs[key])
 
 				result = self._do(api["method"], api["url"], data, headerType=api["headerType"])
 				return result
 
-			raise AttributeError("No such a method.")
+			raise AttributeError("No such a method found.")
 
 		return func
