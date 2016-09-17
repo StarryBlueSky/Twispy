@@ -1,7 +1,9 @@
 {
   "news_top": {
+    "isSecretAPI": true,
     "description": "ニュースタブのニュースを取得します。",
     "method": "GET",
+    "headerType": 0,
     "url": "https://api.twitter.com/1.1/news/top.json",
     "data": [
       ["country_code", "JP"],
@@ -10,8 +12,10 @@
     ]
   },
   "conversation_show": {
+    "isSecretAPI": true,
     "description": "会話を取得します。",
     "method": "GET",
+    "headerType": 0,
     "url": "https://api.twitter.com/1.1/conversation/show.json",
     "data": [
       ["cards_platform"        , "iPhone-13"],
@@ -28,9 +32,31 @@
       ["include_user_entities" , "true"]
     ]
   },
+  "conversation_suggestions_show": {
+    "isSecretAPI": true,
+    "description": "会話を取得します。",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/conversation/suggestions/show.json",
+    "data": [
+      ["author_id"             , null],
+      ["cards_platform"        , "iPhone-13"],
+      ["contributor_details"   , "1"],
+      ["ext"                   , "altText,stickerInfo,mediaRestrictions"],
+      ["id"                    , null],
+      ["include_cards"         , "1"],
+      ["include_entities"      , "1"],
+      ["include_media_features", "true"],
+      ["include_my_retweet"    , "1"],
+      ["include_user_entities" , "true"],
+      ["pc"                    , "true"]
+    ]
+  },
   "timeline_home": {
+    "isSecretAPI": true,
     "description": "タイムラインを取得します。",
     "method": "GET",
+    "headerType": 0,
     "url": "https://api.twitter.com/1.1/timeline/home.json",
     "data": [
       ["autoplay_enabled"               , "true"],
@@ -58,9 +84,58 @@
       ["username"                       , null]
     ]
   },
+  "timeline_user": {
+    "isSecretAPI": true,
+    "description": "タイムラインを取得します。",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/timeline/user.json",
+    "data": [
+      ["cards_platform"        , "iPhone-13"],
+      ["contributor_details"   , "1"],
+      ["count"                 , "40"],
+      ["earned"                , "true"],
+      ["exclude_pinned_tweets" , "true"],
+      ["ext"                   , "altText,stickerInfo,mediaRestrictions"],
+      ["id"                    , null],
+      ["include_blocked_by"    , "true"],
+      ["include_blocking"      , "true"],
+      ["include_cards"         , "1"],
+      ["include_entities"      , "1"],
+      ["include_media_features", "true"],
+      ["include_my_retweet"    , "1"],
+      ["include_rts"           , "true"],
+      ["include_tweet_replies" , "true"],
+      ["include_user_entities" , "true"],
+      ["lang"                  , "ja"],
+      ["pc"                    , "true"],
+      ["request_context"       , "auto"]
+    ]
+  },
+  "statuses_media_timeline": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/statuses/media_timeline.json",
+    "data": [
+      ["cards_platform"        , "iPhone-13"],
+      ["contributor_details"   , "1"],
+      ["count"                 , "50"],
+      ["ext"                   , "altText,stickerInfo,mediaRestrictions"],
+      ["include_cards"         , "1"],
+      ["include_entities"      , "1"],
+      ["include_media_features", "true"],
+      ["include_my_retweet"    , "1"],
+      ["include_user_entities" , "true"],
+      ["user_id"               , null]
+    ]
+  },
   "statuses_update": {
+    "isSecretAPI": false,
     "description": "ツイートを投稿します。",
     "method": "POST",
+    "headerType": 0,
     "url": "https://api.twitter.com/1.1/statuses/update.json",
     "data": [
       ["card_uri"               , false],
@@ -74,21 +149,816 @@
     ]
   },
   "cards_create": {
+    "isSecretAPI": true,
     "description": "投票を発行します。",
     "method": "POST",
+    "headerType": 0,
     "url": "https://caps.twitter.com/v2/cards/create.json",
     "data": [
       ["card_data",
         {
-          "twitter:string:choice1_label": null,
-          "twitter:string:choice2_label": null,
-          "twitter:string:choice3_label": false,
-          "twitter:string:choice4_label": false,
-          "twitter:api:api:endpoint":"1",
-          "twitter:card":"poll2choice_text_only",
+          "twitter:string:choice1_label" : null,
+          "twitter:string:choice2_label" : null,
+          "twitter:string:choice3_label" : false,
+          "twitter:string:choice4_label" : false,
+          "twitter:api:api:endpoint"     :"1",
+          "twitter:card"                 :"poll2choice_text_only",
           "twitter:long:duration_minutes":1440
         }
       ]
+    ]
+  },
+  "push_destinations_device": {
+    "isSecretAPI": true,
+    "description": "プッシュ通知を購読します。",
+    "method": "GET",
+    "headerType": 1,
+    "url": "https://api.twitter.com/1.1/push_destinations/device.json",
+    "data": [
+      ["environment", "3"],
+      ["udid"       , null]
+    ]
+  },
+  "account_push_destinations_cleanup": {
+    "isSecretAPI": true,
+    "description": "プッシュ通知を整理します。",
+    "method": "POST",
+    "headerType": 2,
+    "url": "https://api.twitter.com/1.1/account/push_destinations/cleanup.json",
+    "data": [
+      ["token", null]
+    ]
+  },
+  "account_push_destinations_remove": {
+    "isSecretAPI": true,
+    "description": "プッシュ通知を解除します。",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/account/push_destinations/remove.json",
+    "data": [
+      ["client_application_id", null],
+      ["environment", "3"],
+      ["screen_name", null],
+      ["send_error_codes", "1"],
+      ["udid", null]
+    ]
+  },
+  "push_destinations": {
+    "isSecretAPI": true,
+    "description": "プッシュ通知を購読しているデバイスであるかを返します。",
+    "method": "POST",
+    "headerType": 1,
+    "url": "https://api.twitter.com/1.1/push_destinations.json",
+    "data": [
+      ["app_version"   , "22"],
+      ["device_model"  , "iPhone"],
+      ["device_name"   , "iPhone 6s Plus"],
+      ["enabled_for"   , "41827161"],
+      ["environment"   , "3"],
+      ["lang"          , "ja"],
+      ["system_name"   , "iPhone OS"],
+      ["system_version", "9.3.3"],
+      ["token"         , null],
+      ["udid"          , null]
+    ]
+  },
+  "promoted_content_log": {
+    "isSecretAPI": true,
+    "description": "プロモツイートの既読を管理します。",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/promoted_content/log.json",
+    "data": [
+      ["event"        , "long_dwell_view"],
+      ["impression_id", null]
+    ]
+  },
+  "jot_client_event": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/jot/client_event",
+    "data": [
+      ["lang"    , "ja-JP"],
+      ["gzip_log", ""],
+      ["log"     ,
+        [{
+          "_category": "client_event",
+          "client_version": "Twitter-iPhone\\/6.59.3 iOS\\/9.3.3(Apple;iPhone8,2;;;;;1)",
+          "event_name": "iphone:api:notifications:::open_app",
+          "ts": null,
+          "event_value": 0,
+          "format_version": 2,
+          "association_id": null,
+          "orientation": 1
+        }]
+      ]
+    ]
+  },
+  "jot_t": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/jot/t",
+    "data": [
+    ]
+  },
+  "blocks_ids": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/blocks/ids.json",
+    "data": [
+    ]
+  },
+  "blocks_list": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/blocks/list.json",
+    "data": [
+      ["cursor"               , "-1"],
+      ["include_entities"     , "1"],
+      ["include_user_entities", "true"],
+      ["skip_status"          , "false"]
+    ]
+  },
+  "blocks_create": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/blocks/create.json",
+    "data": [
+      ["include_entities"     , "1"],
+      ["include_user_entities", "true"],
+      ["skip_status"          , "false"],
+      ["user_id"              , null]
+    ]
+  },
+  "blocks_destroy": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/blocks/destroy.json",
+    "data": [
+      ["include_entities"     , "1"],
+      ["include_user_entities", "true"],
+      ["skip_status"          , "false"],
+      ["user_id"              , null]
+    ]
+  },
+  "friendships_create": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/friendships/create.json",
+    "data": [
+      ["handles_challenges"   , "1"],
+      ["include_entities"     , "1"],
+      ["include_user_entities", "true"],
+      ["user_id"              , null]
+    ]
+  },
+  "mutes_users_list": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/mutes/users/list.json",
+    "data": [
+      ["cursor"               , "-1"],
+      ["include_entities"     , "1"],
+      ["include_user_entities", "true"],
+      ["skip_status"          , "false"]
+    ]
+  },
+  "mutes_users_destroy": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/mutes/users/destroy.json",
+    "data": [
+      ["include_entities"     , "1"],
+      ["include_user_entities", "true"],
+      ["user_id"              , null]
+    ]
+  },
+  "help_settings": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 1,
+    "url": "https://api.twitter.com/1.1/help/settings.json",
+    "data": [
+      ["include_zero_rate", "true"],
+      ["settings_version" , null]
+    ]
+  },
+  "account_update_profile": {
+    "isSecretAPI": false,
+    "description": "following,follower,mitualfollowing,mitualfollower",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/account/update_profile.json",
+    "data": [
+      ["birthdate_day"            , false],
+      ["birthdate_month"          , false],
+      ["birthdate_visibility"     , "following"],
+      ["birthdate_year"           , false],
+      ["birthdate_year_visibility", "mutualfollow"],
+      ["description"              , false],
+      ["include_entities"         , "1"],
+      ["include_user_entities"    , "true"],
+      ["location"                 , false],
+      ["name"                     , false],
+      ["url"                      , false]
+    ]
+  },
+  "mutes_users_ids": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/mutes/users/ids.json",
+    "data": [
+    ]
+  },
+  "friendships_incoming": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/friendships/incoming.json",
+    "data": [
+    ]
+  },
+  "friendships_outgoing": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/friendships/outgoing.json",
+    "data": [
+    ]
+  },
+  "activity_about_me": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/activity/about_me.json",
+    "data": [
+      ["cards_platform"        , "iPhone-13"],
+      ["contributor_details"   , "1"],
+      ["count"                 , "50"],
+      ["ext"                   , "altText,stickerInfo,mediaRestrictions"],
+      ["filters"               , ""],
+      ["include_cards"         , "1"],
+      ["include_entities"      , "1"],
+      ["include_media_features", "true"],
+      ["include_my_retweet"    , "1"],
+      ["include_user_entities" , "true"],
+      ["latest_results"        , "true"],
+      ["model_version"         , "7"],
+      ["since_id"              , false]
+    ]
+  },
+  "activity_about_me_unread": {
+    "isSecretAPI": true,
+    "description": "cursor=true or lastcursor",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/activity/about_me/unread.json",
+    "data": [
+      ["cursor", "true"]
+    ]
+  },
+  "account_settings": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/account/settings.json",
+    "data": [
+      ["include_alt_text_compose"           , "true"],
+      ["include_mention_filter"             , "true"],
+      ["include_ranked_timeline"            , "true"],
+      ["include_universal_quality_filtering", "true"]
+    ]
+  },
+  "search_universal": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/search/universal.json",
+    "data": [
+      ["cards_platform"        , "iPhone-13"],
+      ["contributor_details"   , "1"],
+      ["enabled_verticals"     , "cricket,soccer"],
+      ["ext"                   , "altText,stickerInfo,mediaRestrictions"],
+      ["get_clusters"          , "true"],
+      ["include_cards"         , "1"],
+      ["include_entities"      , "1"],
+      ["include_media_features", "true"],
+      ["include_my_retweet"    , "1"],
+      ["include_user_entities" , "true"],
+      ["modules"               , "user"],
+      ["pc"                    , "true"],
+      ["q"                     , null],
+      ["query_source"          , "typed_query"],
+      ["result_type"           , "top"],
+      ["timezone"              , "Asia/Tokyo"],
+      ["ui_lang"               , "ja"]
+    ]
+  },
+  "account_verify_credentials": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/account/verify_credentials.json",
+    "data": [
+      ["include_entities"     , "1"],
+      ["include_user_entities", "true"]
+    ]
+  },
+  "statuses_show": {
+    "isSecretAPI": false,
+    "description": "/show/[id].json",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/statuses/show.json",
+    "data": [
+      ["cards_platform"        ,"iPhone-13"],
+      ["contributor_details"   ,"1"],
+      ["ext"                   ,"altText,stickerInfo,mediaRestrictions"],
+      ["id"                    , null],
+      ["include_cards"         ,"1"],
+      ["include_entities"      ,"1"],
+      ["include_media_features","true"],
+      ["include_my_retweet"    ,"1"],
+      ["include_user_entities" ,"true"]
+    ]
+  },
+  "foundmedia_categories": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/foundmedia/categories.json",
+    "data": [
+    ]
+  },
+  "friendships_list": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/friendships/list.json",
+    "data": [
+      ["user_id", null]
+    ]
+  },
+  "friends_ids": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/friends/ids.json",
+    "data": [
+      ["type", "sms"]
+    ]
+  },
+  "search_typeahead": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/search/typeahead.json",
+    "data": [
+      ["cards_platform"        , "iPhone-13"],
+      ["contributor_details"   , "1"],
+      ["ext"                   , "altText,stickerInfo,mediaRestrictions"],
+      ["filters"               , "true"],
+      ["include_cards"         , "1"],
+      ["include_entities"      , "1"],
+      ["include_media_features", "true"],
+      ["include_my_retweet"    , "1"],
+      ["include_user_entities" , "true"],
+      ["q"                     , null],
+      ["result_type"           , "users"],
+      ["src"                   , "search_box"]
+    ]
+  },
+  "saved_searches_list": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/saved_searches/list.json",
+    "data": [
+    ]
+  },
+  "cards_preview": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://caps.twitter.com/v2/cards/preview.json",
+    "data": [
+      ["cards_platform"    , "iPhone-13"],
+      ["include_blocked_by", "true"],
+      ["include_blocking"  , "true"],
+      ["include_cards"     , "1"],
+      ["status"            , null]
+    ]
+  },
+  "prompts_record_event": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/prompts/record_event.json",
+    "data": [
+      ["action"   , "shown"],
+      ["prompt_id", null],
+      ["user_id"  , null]
+    ]
+  },
+  "prompts_suggest": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/prompts/suggest.json",
+    "data": [
+      ["client_namespace"         , "native"],
+      ["force_fatigue_on_override", "false"],
+      ["format"                   , "home_timeline"],
+      ["has_unknown_phone_number" , "true"],
+      ["lang"                     , "ja"],
+      ["notifications_device"     , "true"]
+    ]
+  },
+  "ads_campaigns_account_permissions": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/ads/campaigns/account_permissions.json",
+    "data": [
+    ]
+  },
+  "users_recommendations": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/users/recommendations.json",
+    "data": [
+      ["connections"          , "true"],
+      ["display_location"     , "st-component"],
+      ["include_entities"     , "1"],
+      ["include_user_entities", "true"],
+      ["limit"                , "3"],
+      ["pc"                   , "true"],
+      ["screen_name"          , null]
+    ]
+  },
+  "users_lookup": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/users/lookup.json",
+    "data": [
+      ["include_entities"     , "1"],
+      ["include_user_entities", "true"],
+      ["user_id"              , null]
+    ]
+  },
+  "people_discovery_modules": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/people_discovery/modules.json",
+    "data": [
+      ["display_location" , "1000"],
+      ["first_time"       , "0"],
+      ["has_ab_permission", "0"],
+      ["layout_version"   , "2"],
+      ["supported_layouts", "badge-carousel,featured-users-carousel,picker,address-book-prompt,prompt,user-tweet-carousel,user-bio-list,user-media-list,user-profile-carousel,address-book-contacts"]
+    ]
+  },
+  "account_pin_tweet": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/account/pin_tweet.json",
+    "data": [
+      ["id", null]
+    ]
+  },
+  "account_unpin_tweet": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/account/unpin_tweet.json",
+    "data": [
+      ["id", null]
+    ]
+  },
+  "favorites_list": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/favorites/list.json",
+    "data": [
+      ["cards_platform"        , "iPhone-13"],
+      ["contributor_details"   , "1"],
+      ["ext"                   , "altText,stickerInfo,mediaRestrictions"],
+      ["include_cards"         , "1"],
+      ["include_entities"      , "1"],
+      ["include_media_features", "true"],
+      ["include_my_retweet"    , "1"],
+      ["include_user_entities" , "true"],
+      ["user_id"               , null]
+    ]
+  },
+  "users_extended_profile": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/users/extended_profile.json",
+    "data": [
+      ["include_birthdate", "true"],
+      ["screen_name"      , null]
+    ]
+  },
+  "users_email_phone_info": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/users/email_phone_info.json",
+    "data": [
+      ["include_pending_email", "true"]
+    ]
+  },
+  "users_show": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/users/show.json",
+    "data": [
+      ["include_entities"     , "1"],
+      ["include_user_entities", "true"],
+      ["user_id"              , null]
+    ]
+  },
+  "dm_conversation_mark_read": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/dm/conversation/mark_read.json",
+    "data": [
+      ["cards_platform"        , "iPhone-13"],
+      ["contributor_details"   , "1"],
+      ["ext"                   , "altText,stickerInfo,mediaRestrictions"],
+      ["include_cards"         , "1"],
+      ["include_entities"      , "1"],
+      ["include_media_features", "true"],
+      ["include_my_retweet"    , "1"],
+      ["include_user_entities" , "true"],
+      ["last_read_event_id"    , null]
+    ]
+  },
+  "dm_update_last_seen_event_id": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/dm/update_last_seen_event_id.json",
+    "data": [
+      ["cards_platform"        , "iPhone-13"],
+      ["contributor_details"   , "1"],
+      ["ext"                   , "altText,stickerInfo,mediaRestrictions"],
+      ["include_cards"         , "1"],
+      ["include_entities"      , "1"],
+      ["include_media_features", "true"],
+      ["include_my_retweet"    , "1"],
+      ["include_user_entities" , "true"],
+      ["last_seen_event_id"    , null]
+    ]
+  },
+  "friendships_accept": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/friendships/accept.json",
+    "data": [
+      ["include_entities"      , "1"],
+      ["include_user_entities" , "true"],
+      ["user_id"    , null]
+    ]
+  },
+  "friendships_refuse": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/friendships/refuse.json",
+    "data": [
+      ["include_entities"      , "1"],
+      ["include_user_entities" , "true"],
+      ["user_id"    , null]
+    ]
+  },
+  "trends_plus": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/trends/plus.json",
+    "data": [
+      ["cards_platform"        , "iPhone-13"],
+      ["contributor_details"   , "1"],
+      ["ext"                   , "altText,stickerInfo,mediaRestrictions"],
+      ["include_cards"         , "1"],
+      ["include_entities"      , "1"],
+      ["include_media_features", "true"],
+      ["include_my_retweet"    , "1"],
+      ["include_user_entities" , "true"],
+      ["pc"                    , "true"]
+    ]
+  },
+  "capi_passthrough": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 3,
+    "url": "https://caps.twitter.com/v2/capi/passthrough/1",
+    "data": [
+      ["twitter:string:card_uri"          , "card://null"],
+      ["twitter:string:cards_platform"    , "iPhone-13"],
+      ["twitter:string:response_card_name", "poll2choice_text_only"]
+    ]
+  },
+  "statuses_favorited_by": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/statuses/favorited_by.json",
+    "data": [
+      ["cursor"               , "-1"],
+      ["id"                   , null],
+      ["include_entities"     , "1"],
+      ["include_user_entities", "true"]
+    ]
+  },
+  "statuses_retweeted_by": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/statuses/retweeted_by.json",
+    "data": [
+      ["cursor"               , "-1"],
+      ["id"                   , null],
+      ["include_entities"     , "1"],
+      ["include_user_entities", "true"]
+    ]
+  },
+  "geo_places": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/geo/places.json",
+    "data": [
+      ["device_type", "iPhone8,2"],
+      ["hacc"       , "0"],
+      ["os"         , "iPhone OS 9.3.3"],
+      ["query_type" , "profile_location"],
+      ["wifi_on"    , "true"]
+    ]
+  },
+  "dm_user_updates": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/dm/user_updates.json",
+    "data": [
+      ["cards_platform", "iPhone-13"],
+      ["cursor"        , null],
+      ["dm_users"      , "true"],
+      ["include_cards" , "1"],
+      ["include_groups", "true"]
+    ]
+  },
+  "oauth_token": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/oauth/access_token",
+    "data": [
+      ["adc"                 , "phone"],
+      ["x_auth_access_secret", null],
+      ["x_auth_access_token" , null],
+      ["x_auth_mode"         , "exchange_auth"]
+    ]
+  },
+  "oauth2_token": {
+    "isSecretAPI": false,
+    "description": "basic",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/oauth2/token",
+    "data": [
+      ["grant_type"      , "client_credentials"],
+      ["send_error_codes", "1"]
+    ]
+  },
+  "guest_activate": {
+    "isSecretAPI": true,
+    "description": "bearer",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/guest/activate.json",
+    "data": [
+    ]
+  },
+  "post_account_settings": {
+    "isSecretAPI": false,
+    "description": "",
+    "method": "POST",
+    "headerType": 0,
+    "url": "https://api.twitter.com/1.1/account/settings.json",
+    "data": [
+      ["include_alt_text_compose", "true"],
+      ["include_mention_filter", "true"],
+      ["include_ranked_timeline", "true"],
+      ["include_universal_quality_filtering", "true"],
+      ["protected", null]
+    ]
+  },
+  "mob_idsync_generate": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "url": "https://analytics.twitter.com/mob_idsync_generate.json",
+    "data": [
+      ["ad_id"  , null],
+      ["user_id", null]
+    ]
+  },
+  "i_anonymize": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 1,
+    "url": "https://twitter.com/i/anonymize",
+    "data": [
+      ["data",
+        [{"guest_id":"<guest_id_int>","limit_ad_tracking":1,"ifa":"<uuid>","dev_model":"iPhone8,2","os_name":"iPhone OS","dev_carrier":"<carrier>","ifv":"<uuid>","user_id":"<user_id>","dev_brand":"apple","action":"signin","lang":"ja","os_ver":"9.3.3","integration":"hasOffersEvent","country_code":"JP","ts":"1474029738.960609","user_agent":"Twitter-iPhone\/6.59.3 iOS\/9.3.3 (Apple;iPhone8,2;;;;;1)"}]
+      ],
+      ["send_error_codes", "1"]
+    ]
+  },
+  "xauth_password": {
+    "isSecretAPI": true,
+    "description": "x_auth_identifier=sn",
+    "method": "POST",
+    "headerType": 4,
+    "url": "https://api.twitter.com/auth/1/xauth_password.json",
+    "data": [
+      ["kdt"                      , null],
+      ["send_error_codes"         , "1"],
+      ["x_auth_identifier"        , null],
+      ["x_auth_login_verification", "true"],
+      ["x_auth_password"          , null],
+      ["x_auth_supports_1fa"      , "true"]
     ]
   }
 }
