@@ -132,3 +132,6 @@ def makeOAuthSignature(signingKey, signatureBaseString):
 
 def makeAuthorizationHeader(authorizationData):
 	return "OAuth " + ", ".join(["{key}=\"{value}\"".format(key=x, value=y) for x, y in authorizationData.items()])
+
+def makePostString(data):
+	return "&".join(["{key}={value}".format(key=escape(x), value=escape(y)) for x, y in data.items()])

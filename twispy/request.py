@@ -14,6 +14,7 @@ class Request:
 		self.deviceId = deviceId
 
 	def do(self, method, url, data=None, headerType=0):
+		method = method.upper()
 		if not data:
 			data = {}
 
@@ -26,12 +27,12 @@ class Request:
 		authorizationData["oauth_signature"] = makeOAuthSignature(signingKey, signatureBaseString)
 		header["Authorization"] = makeAuthorizationHeader(authorizationData)
 
-		if method.upper() == "GET":
+		if method == "GET":
 			request = requests.get(url, params=data, headers=header)
-		elif method.upper() == "POST":
-			dataString = "&".join(["{key}={value}".format(key=escape(x), value=escape(y)) for x, y in data.items()])
-			header["Content-Length"] = str(len(dataString))
-			request = requests.post(url, data=dataString, headers=header)
+		elif method == "POST":
+			postString = makePostString(data)
+			header["Content-Length"] = str(len(postString))
+			request = requests.post(url, data=postString, headers=header)
 		else:
 			raise NotImplementedError("This method was not supported.")
 		result = json.loads(request.text)
