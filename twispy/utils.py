@@ -89,6 +89,27 @@ def makeHeader(method, url, uuid=None, deviceId=None, headerType=None):
 		header["Authorization"] = None
 		header["Accept-Encoding"] = "gzip, deflate"
 		header["User-Agent"] = "Twitter/6.59.3 CFNetwork/758.5.3 Darwin/15.6.0"
+	elif headerType == 4:
+		header["Host"] = url.replace("https://", "").split("/")[0]
+		header["X-Twitter-Client-DeviceID"] = deviceId if deviceId else getUUID()
+		header["Authorization"] = None
+		header["X-Twitter-Client-Version"] = "6.59.3"
+		header["X-Guest-Token"] = None
+		header["X-Client-UUID"] = uuid if uuid else getUUID()
+		header["X-Twitter-Client-Language"] = "ja"
+		header["X-B3-TraceId"] = hashlib.md5(str(getCurrentEpochTime()).encode()).hexdigest()[0:16]
+		header["Accept"] = "*/*"
+		# header["Proxy-Connection"] = "keep-alive"
+		header["Accept-Language"] = "ja"
+		header["Accept-Encoding"] = "gzip, deflate"
+		if method == "POST":
+			header["Content-Type"] = "application/x-www-form-urlencoded"
+			header["Content-Length"] = None
+		header["User-Agent"] = "Twitter-iPhone/6.59.3 iOS/9.3.3 (Apple;iPhone8,2;;;;;1)"
+		# header["Connection"] = "keep-alive"
+		header["X-Twitter-Client-Limit-Ad-Tracking"] = "1"
+		header["X-Twitter-API-Version"] = "5"
+		header["X-Twitter-Client"] = "Twitter-iPhone"
 	else:
 		raise NotImplementedError("No such a headerType found.")
 	return header
