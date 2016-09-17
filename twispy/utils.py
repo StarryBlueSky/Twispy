@@ -77,6 +77,17 @@ def makeHeader(method, url, uuid=None, deviceId=None, headerType=None):
 		# OAuth oauth_nonce="uuid", oauth_signature_method="HMAC-SHA1", oauth_timestamp="timestamp", oauth_consumer_key="WXZE9QillkIZpTANgLNT9g", oauth_token="token", oauth_signature="signature", oauth_version="1.0"
 		header["Accept-Encoding"] = "gzip, deflate"
 		header["User-Agent"] = "accountsd/113 CFNetwork/758.5.3 Darwin/15.6.0"
+	elif headerType == 3:
+		header["Host"] = url.replace("https://", "").split("/")[0]
+		header["X-B3-TraceId"] = hashlib.md5(str(getCurrentEpochTime()).encode()).hexdigest()[0:16]
+		# header["Connection"] = "keep-alive"
+		header["X-Twitter-Client-Language"] = "ja"
+		# header["Proxy-Connection"] = "keep-alive"
+		header["Accept"] = "*/*"
+		header["Accept-Language"] = "ja"
+		header["Authorization"] = None
+		header["Accept-Encoding"] = "gzip, deflate"
+		header["User-Agent"] = "Twitter/6.59.3 CFNetwork/758.5.3 Darwin/15.6.0"
 	else:
 		raise NotImplementedError("No such a headerType found.")
 	return header
