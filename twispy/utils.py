@@ -63,6 +63,22 @@ def makeHeader(method, url, uuid=None, deviceId=None, headerType=None):
 		header["X-Twitter-API-Version"] = "5"
 		header["X-Twitter-Client-Limit-Ad-Tracking"] = "1"
 		header["X-Twitter-Client"] = "Twitter-iPhone"
+	elif headerType == 2:
+		header["Host"] = url.replace("https://", "").split("/")[0]
+		header["Accept"] = "*/*"
+		if method == "POST":
+			header["Content-Type"] = "application/x-www-form-urlencoded"
+			header["Content-Length"] = None
+		# header["Connection"] = "keep-alive"
+		# header["Proxy-Connection"] = "keep-alive"
+		header["Cookie"] = "guest_id=v1:<guest_id>"
+		header["Accept-Language"] = "ja"
+		header["Authorization"] = None
+		# OAuth oauth_nonce="uuid", oauth_signature_method="HMAC-SHA1", oauth_timestamp="timestamp", oauth_consumer_key="WXZE9QillkIZpTANgLNT9g", oauth_token="token", oauth_signature="signature", oauth_version="1.0"
+		header["Accept-Encoding"] = "gzip, deflate"
+		header["User-Agent"] = "accountsd/113 CFNetwork/758.5.3 Darwin/15.6.0"
+	else:
+		raise NotImplementedError("No such a headerType found.")
 	return header
 
 def makeImageHeader(url):
