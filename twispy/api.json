@@ -4,6 +4,7 @@
     "description": "ニュースタブのニュースを取得します。",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/news/top.json",
     "data": [
       ["country_code", "JP"],
@@ -16,6 +17,7 @@
     "description": "会話を取得します。",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/conversation/show.json",
     "data": [
       ["cards_platform"        , "iPhone-13"],
@@ -37,6 +39,7 @@
     "description": "会話を取得します。",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/conversation/suggestions/show.json",
     "data": [
       ["author_id"             , null],
@@ -57,6 +60,7 @@
     "description": "タイムラインを取得します。",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/timeline/home.json",
     "data": [
       ["autoplay_enabled"               , "true"],
@@ -89,6 +93,7 @@
     "description": "タイムラインを取得します。",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/timeline/user.json",
     "data": [
       ["cards_platform"        , "iPhone-13"],
@@ -117,6 +122,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/statuses/media_timeline.json",
     "data": [
       ["cards_platform"        , "iPhone-13"],
@@ -136,6 +142,7 @@
     "description": "ツイートを投稿します。",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/statuses/update.json",
     "data": [
       ["card_uri"               , false],
@@ -153,6 +160,7 @@
     "description": "投票を発行します。",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://caps.twitter.com/v2/cards/create.json",
     "data": [
       ["card_data",
@@ -173,6 +181,7 @@
     "description": "プッシュ通知を購読します。",
     "method": "GET",
     "headerType": 1,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/push_destinations/device.json",
     "data": [
       ["environment", "3"],
@@ -184,6 +193,7 @@
     "description": "プッシュ通知を整理します。",
     "method": "POST",
     "headerType": 2,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/account/push_destinations/cleanup.json",
     "data": [
       ["token", null]
@@ -194,6 +204,7 @@
     "description": "プッシュ通知を解除します。",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/account/push_destinations/remove.json",
     "data": [
       ["client_application_id", null],
@@ -208,6 +219,7 @@
     "description": "プッシュ通知を購読しているデバイスであるかを返します。",
     "method": "POST",
     "headerType": 1,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/push_destinations.json",
     "data": [
       ["app_version"   , "22"],
@@ -227,6 +239,7 @@
     "description": "プロモツイートの既読を管理します。",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/promoted_content/log.json",
     "data": [
       ["event"        , "long_dwell_view"],
@@ -238,6 +251,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/jot/client_event",
     "data": [
       ["lang"    , "ja-JP"],
@@ -261,6 +275,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/jot/t",
     "data": [
     ]
@@ -270,6 +285,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/blocks/ids.json",
     "data": [
     ]
@@ -279,6 +295,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/blocks/list.json",
     "data": [
       ["cursor"               , "-1"],
@@ -292,6 +309,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/blocks/create.json",
     "data": [
       ["include_entities"     , "1"],
@@ -305,6 +323,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/blocks/destroy.json",
     "data": [
       ["include_entities"     , "1"],
@@ -318,6 +337,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/friendships/create.json",
     "data": [
       ["handles_challenges"   , "1"],
@@ -331,6 +351,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/mutes/users/list.json",
     "data": [
       ["cursor"               , "-1"],
@@ -344,6 +365,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/mutes/users/destroy.json",
     "data": [
       ["include_entities"     , "1"],
@@ -356,6 +378,7 @@
     "description": "",
     "method": "GET",
     "headerType": 1,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/help/settings.json",
     "data": [
       ["include_zero_rate", "true"],
@@ -367,6 +390,7 @@
     "description": "following,follower,mitualfollowing,mitualfollower",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/account/update_profile.json",
     "data": [
       ["birthdate_day"            , false],
@@ -387,6 +411,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/mutes/users/ids.json",
     "data": [
     ]
@@ -396,6 +421,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/friendships/incoming.json",
     "data": [
     ]
@@ -405,6 +431,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/friendships/outgoing.json",
     "data": [
     ]
@@ -414,6 +441,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/activity/about_me.json",
     "data": [
       ["cards_platform"        , "iPhone-13"],
@@ -436,6 +464,7 @@
     "description": "cursor=true or lastcursor",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/activity/about_me/unread.json",
     "data": [
       ["cursor", "true"]
@@ -446,6 +475,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/account/settings.json",
     "data": [
       ["include_alt_text_compose"           , "true"],
@@ -459,6 +489,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/search/universal.json",
     "data": [
       ["cards_platform"        , "iPhone-13"],
@@ -485,6 +516,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/account/verify_credentials.json",
     "data": [
       ["include_entities"     , "1"],
@@ -496,6 +528,7 @@
     "description": "/show/[id].json",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/statuses/show.json",
     "data": [
       ["cards_platform"        ,"iPhone-13"],
@@ -514,6 +547,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/foundmedia/categories.json",
     "data": [
     ]
@@ -523,6 +557,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/friendships/list.json",
     "data": [
       ["user_id", null]
@@ -533,6 +568,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/friends/ids.json",
     "data": [
       ["type", "sms"]
@@ -543,6 +579,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/search/typeahead.json",
     "data": [
       ["cards_platform"        , "iPhone-13"],
@@ -564,6 +601,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/saved_searches/list.json",
     "data": [
     ]
@@ -573,6 +611,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://caps.twitter.com/v2/cards/preview.json",
     "data": [
       ["cards_platform"    , "iPhone-13"],
@@ -587,6 +626,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/prompts/record_event.json",
     "data": [
       ["action"   , "shown"],
@@ -599,6 +639,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/prompts/suggest.json",
     "data": [
       ["client_namespace"         , "native"],
@@ -614,6 +655,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/ads/campaigns/account_permissions.json",
     "data": [
     ]
@@ -623,6 +665,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/users/recommendations.json",
     "data": [
       ["connections"          , "true"],
@@ -639,6 +682,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/users/lookup.json",
     "data": [
       ["include_entities"     , "1"],
@@ -651,6 +695,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/people_discovery/modules.json",
     "data": [
       ["display_location" , "1000"],
@@ -665,6 +710,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/account/pin_tweet.json",
     "data": [
       ["id", null]
@@ -675,6 +721,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/account/unpin_tweet.json",
     "data": [
       ["id", null]
@@ -685,6 +732,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/favorites/list.json",
     "data": [
       ["cards_platform"        , "iPhone-13"],
@@ -703,6 +751,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/users/extended_profile.json",
     "data": [
       ["include_birthdate", "true"],
@@ -714,6 +763,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/users/email_phone_info.json",
     "data": [
       ["include_pending_email", "true"]
@@ -724,6 +774,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/users/show.json",
     "data": [
       ["include_entities"     , "1"],
@@ -736,6 +787,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/dm/conversation/mark_read.json",
     "data": [
       ["cards_platform"        , "iPhone-13"],
@@ -754,6 +806,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/dm/update_last_seen_event_id.json",
     "data": [
       ["cards_platform"        , "iPhone-13"],
@@ -772,6 +825,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/friendships/accept.json",
     "data": [
       ["include_entities"      , "1"],
@@ -784,6 +838,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/friendships/refuse.json",
     "data": [
       ["include_entities"      , "1"],
@@ -796,6 +851,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/trends/plus.json",
     "data": [
       ["cards_platform"        , "iPhone-13"],
@@ -814,6 +870,7 @@
     "description": "",
     "method": "GET",
     "headerType": 3,
+    "authorizationType": 0,
     "url": "https://caps.twitter.com/v2/capi/passthrough/1",
     "data": [
       ["twitter:string:card_uri"          , "card://null"],
@@ -826,6 +883,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/statuses/favorited_by.json",
     "data": [
       ["cursor"               , "-1"],
@@ -839,6 +897,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/statuses/retweeted_by.json",
     "data": [
       ["cursor"               , "-1"],
@@ -852,6 +911,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/geo/places.json",
     "data": [
       ["device_type", "iPhone8,2"],
@@ -866,6 +926,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/dm/user_updates.json",
     "data": [
       ["cards_platform", "iPhone-13"],
@@ -880,6 +941,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/oauth/access_token",
     "data": [
       ["adc"                 , "phone"],
@@ -893,6 +955,7 @@
     "description": "basic",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 1,
     "url": "https://api.twitter.com/oauth2/token",
     "data": [
       ["grant_type"      , "client_credentials"],
@@ -904,6 +967,7 @@
     "description": "bearer",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 2,
     "url": "https://api.twitter.com/1.1/guest/activate.json",
     "data": [
     ]
@@ -913,6 +977,7 @@
     "description": "",
     "method": "POST",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/1.1/account/settings.json",
     "data": [
       ["include_alt_text_compose", "true"],
@@ -927,6 +992,7 @@
     "description": "",
     "method": "GET",
     "headerType": 0,
+    "authorizationType": 0,
     "url": "https://analytics.twitter.com/mob_idsync_generate.json",
     "data": [
       ["ad_id"  , null],
@@ -938,6 +1004,7 @@
     "description": "",
     "method": "POST",
     "headerType": 1,
+    "authorizationType": 0,
     "url": "https://twitter.com/i/anonymize",
     "data": [
       ["data",
@@ -951,6 +1018,7 @@
     "description": "x_auth_identifier=sn",
     "method": "POST",
     "headerType": 4,
+    "authorizationType": 0,
     "url": "https://api.twitter.com/auth/1/xauth_password.json",
     "data": [
       ["kdt"                      , null],

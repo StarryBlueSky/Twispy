@@ -13,19 +13,27 @@ class Request:
 		self.uuid = uuid
 		self.deviceId = deviceId
 
-	def do(self, method, url, data=None, headerType=0):
+	def do(self, method, url, data=None, headerType=0, authorizationType=0, bearerToken=None):
 		method = method.upper()
 		if not data:
 			data = {}
 
 		header = makeHeader(method, url, self.uuid, self.deviceId, headerType)
-		authorizationData = makeAuthorizationData(self.ck, self.at)
-		signatureBase = makeSignatureBase(method, header, data, authorizationData, self.ck, self.at)
-		signatureBaseString = makeSignatureBaseString(method, url, signatureBase)
-		signingKey = makeSigningKey(self.cs, self.ats)
 
-		authorizationData["oauth_signature"] = makeOAuthSignature(signingKey, signatureBaseString)
-		header["Authorization"] = makeAuthorizationHeader(authorizationData)
+		if authorizationType == 0:
+			authorizationData = makeAuthorizationData(self.ck, self.at)
+			signatureBase = makeSignatureBase(method, header, data, authorizationData, self.ck, self.at)
+			signatureBaseString = makeSignatureBaseString(method, url, signatureBase)
+			signingKey = makeSigningKey(self.cs, self.ats)
+
+			authorizationData["oauth_signature"] = makeOAuthSignature(signingKey, signatureBaseString)
+			header["Authorization"] = makeAuthorizationHeader(authorizationData)
+		elif authorizationType == 1:
+			header["Authorization"] = makeBasicAuthorizationHeader(self.ck, self.cs)
+		elif authorizationType == 2:
+			header["Authorization"] = makeBearerAuthorizationHeader(bearerToken)
+		else:
+			raise NotImplementedError("This authorizationType was not supported.")
 
 		if method == "GET":
 			request = requests.get(url, params=data, headers=header)
@@ -36,11 +44,5 @@ class Request:
 		else:
 			raise NotImplementedError("This method was not supported.")
 		result = json.loads(request.text)
-
-		self.header = header
-		self.authorizationData = authorizationData
-		self.signatureBase = signatureBase
-		self.signatureBaseString = signatureBaseString
-		self.signingKey = signingKey
 
 		return result

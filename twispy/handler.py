@@ -21,7 +21,7 @@ class API(object):
 
 				data = OrderedDict()
 				for array in api["data"]:
-					key, value = array
+					key, value = array[0:1]
 					if value == False:
 						# optional argument
 						continue
@@ -33,7 +33,7 @@ class API(object):
 					if key in kwargs:
 						data[key] = str(kwargs[key])
 
-				result = self._do(api["method"], api["url"], data, headerType=api["headerType"])
+				result = self._do(api["method"], api["url"], data, headerType=api["headerType"], authorizationType=api["authorizationType"])
 				return result
 
 			raise AttributeError("No such a method found.")
