@@ -32,6 +32,6 @@ class API(object):
 							if array[1] == None:
 								raise Exception("{} must have non-null parameter.".format(key))
 						data[key] = array[1]
-				result = self._do(api["method"], api["url"], data)
+				result = self._do(api["method"], api["url"], data, headerType=api["headerType"])
 				return AttrDict(result)
 		return func

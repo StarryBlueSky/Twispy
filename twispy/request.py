@@ -13,11 +13,11 @@ class Request:
 		self.uuid = uuid
 		self.deviceId = deviceId
 
-	def do(self, method, url, data=None):
+	def do(self, method, url, data=None, headerType=0):
 		if not data:
 			data = {}
 
-		header = makeHeader(url, self.uuid, self.deviceId)
+		header = makeHeader(method, url, self.uuid, self.deviceId, headerType)
 		authorizationData = makeAuthorizationData(self.ck, self.at)
 		signatureBase = makeSignatureBase(method, header, data, authorizationData, self.ck, self.at)
 		signatureBaseString = makeSignatureBaseString(method, url, signatureBase)
@@ -27,7 +27,6 @@ class Request:
 		header["Authorization"] = makeAuthorizationHeader(authorizationData)
 
 		if method.upper() == "GET":
-			del header["Content-Type"], header["Content-Length"]
 			request = requests.get(url, params=data, headers=header)
 		else:
 			dataString = "&".join(["{key}={value}".format(key=escape(x), value=escape(y)) for x, y in data.items()])
