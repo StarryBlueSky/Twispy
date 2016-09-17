@@ -1,2 +1,2 @@
 # Twispy
-A Twitter Private API Wrapper.
+A Simple Twitter API Wrapper.
