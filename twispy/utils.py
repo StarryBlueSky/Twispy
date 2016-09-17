@@ -172,8 +172,11 @@ def makeAuthorizationData(ck, at):
 	authorizationData["oauth_signature_method"] = "HMAC-SHA1"
 	return authorizationData
 
-def makeBearerBasicAuthorizationString(ck, cs):
+def makeBasicAuthorizationHeader(ck, cs):
 	return "Basic " + base64.b64encode((ck + ":" + cs).encode()).decode()
+
+def makeBearerAuthorizationHeader(token):
+	return "Bearer " + token
 
 def makeSignatureBase(method, header, data, authorizationData, ck, at):
 	signatureBase = []
