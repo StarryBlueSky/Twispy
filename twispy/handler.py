@@ -3,8 +3,6 @@ import json
 import os
 from collections import OrderedDict
 
-from attrdict import AttrDict
-
 from twispy.request import Request
 
 with open(os.path.abspath(os.path.dirname(__file__)) + "/api.json") as f:
@@ -36,7 +34,7 @@ class API(object):
 						data[key] = kwargs[key]
 
 				result = self._do(api["method"], api["url"], data, headerType=api["headerType"])
-				return AttrDict(result)
+				return result
 
 			raise AttributeError("No such a method.")
 
