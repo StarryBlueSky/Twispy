@@ -1,4 +1,5 @@
 # coding=utf-8
+import base64
 import binascii
 import datetime
 import hashlib
@@ -149,6 +150,9 @@ def makeAuthorizationData(ck, at):
 	authorizationData["oauth_version"] = "1.0"
 	authorizationData["oauth_signature_method"] = "HMAC-SHA1"
 	return authorizationData
+
+def makeBearerBasicAuthorizationString(ck, cs):
+	return "Basic " + base64.b64encode((ck + ":" + cs).encode()).decode()
 
 def makeSignatureBase(method, header, data, authorizationData, ck, at):
 	signatureBase = []
