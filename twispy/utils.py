@@ -91,6 +91,21 @@ def makeImageHeader(url):
 	header["Accept-Encoding"] = "gzip, deflate"
 	return header
 
+def makeDMImageHeader(url):
+	# https://ton.twitter.com/1.1/ton/data/dm/731113550362501123/731113550383480833/Z82uE7dG.jpg:large
+	header = OrderedDict()
+	header["Host"] = url.replace("https://", "").split("/")[0]
+	header["X-B3-TraceId"] = hashlib.md5(str(getCurrentEpochTime()).encode()).hexdigest()[0:16]
+	# header["Connection"] = "keep-alive"
+	header["X-Twitter-Client-Language"] = "ja"
+	# header["Proxy-Connection"] = "keep-alive"
+	header["Accept"] = "*/*"
+	header["Accept-Language"] = "ja"
+	header["Authorization"] = None
+	header["Accept-Encoding"] = "gzip, deflate"
+	header["User-Agent"] = "Twitter/6.59.3 CFNetwork/758.5.3 Darwin/15.6.0"
+	return header
+
 def makeVideoHeader(url, sessionId):
 	# http://amp.twimg.com/prod/multibr_v_1/video/2016/08/30/14/770627528612536321-libx264-baseline-1264k_00000.ts
 	# http://amp.twimg.com/prod/multibr_v_1/video/2016/08/30/14/770627528612536321-libx264-baseline-1264k.m3u8?doxj4Q2mMk%2FyasGp9MQivv8BeYAJbs3%2Fi0Lf70X4hZY%3D HTTP/1.1
