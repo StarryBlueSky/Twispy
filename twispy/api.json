@@ -486,7 +486,7 @@
   },
   "search_universal": {
     "isSecretAPI": true,
-    "description": "",
+    "description": "result_type=recent,follows , filter=images",
     "method": "GET",
     "headerType": 0,
     "authorizationType": 0,
@@ -496,6 +496,7 @@
       ["contributor_details"   , "1"],
       ["enabled_verticals"     , "cricket,soccer"],
       ["ext"                   , "altText,stickerInfo,mediaRestrictions"],
+      ["filter"                , false],
       ["get_clusters"          , "true"],
       ["include_cards"         , "1"],
       ["include_entities"      , "1"],
