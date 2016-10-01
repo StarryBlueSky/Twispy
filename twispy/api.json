@@ -1029,5 +1029,39 @@
       ["x_auth_password"          , null],
       ["x_auth_supports_1fa"      , "true"]
     ]
+  },
+  "moments_pivot": {
+    "isSecretAPI": true,
+    "description": "v=userid",
+    "method": "GET",
+    "headerType": 0,
+    "authorizationType": 0,
+    "url": "https://api.twitter.com/1.1/moments/pivot.json",
+    "data": [
+      ["cards_platform", "iPhone-13"],
+      ["ext", "stickerInfo"],
+      ["include_blocked_by", "1"],
+      ["include_blocking", "1"],
+      ["include_cards", "1"],
+      ["moment_id", null],
+      ["v", 1469210400]
+    ]
+  },
+  "moments_capsule": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "GET",
+    "headerType": 0,
+    "authorizationType": 0,
+    "url": "https://api.twitter.com/1.1/moments/capsule/<id>.json",
+    "data": [
+      ["cards_platform", "iPhone-13"],
+      ["ext", "stickerInfo"],
+      ["hydration_count", "100"],
+      ["include_blocked_by", "1"],
+      ["include_blocking", "1"],
+      ["include_cards", "1"],
+      ["v", 1469210400]
+    ]
   }
 }
