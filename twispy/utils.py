@@ -110,6 +110,9 @@ def makeHeader(method, url, uuid=None, deviceId=None, headerType=None):
 		header["X-Twitter-Client-Limit-Ad-Tracking"] = "1"
 		header["X-Twitter-API-Version"] = "5"
 		header["X-Twitter-Client"] = "Twitter-iPhone"
+	elif headerType == 5:
+		header["Cookie"] = None
+		raise NotImplementedError("headerType 5 is not implemented yet.")
 	else:
 		raise NotImplementedError("No such a headerType found.")
 	return header

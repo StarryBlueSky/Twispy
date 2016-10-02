@@ -1063,5 +1063,35 @@
       ["include_cards", "1"],
       ["v", 1469210400]
     ]
+  },
+  "moments_create": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 5,
+    "authorizationType": 3,
+    "url": "https://twitter.com/i/moments/create",
+    "data": [
+    ]
+  },
+    "moments_edit": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 5,
+    "authorizationType": 3,
+    "url": "https://twitter.com/i/moments/edit/<id>/meta",
+    "data": [
+    ]
+  },
+    "moments_add": {
+    "isSecretAPI": true,
+    "description": "",
+    "method": "POST",
+    "headerType": 5,
+    "authorizationType": 3,
+    "url": "https://twitter.com/i/moments/edit/<id>/add",
+    "data": [
+    ]
   }
 }

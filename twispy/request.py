@@ -32,6 +32,9 @@ class Request:
 			header["Authorization"] = makeBasicAuthorizationHeader(self.ck, self.cs)
 		elif authorizationType == 2:
 			header["Authorization"] = makeBearerAuthorizationHeader(bearerToken)
+		elif authorizationType == 3:
+			header["Cookie"] = None
+			raise NotImplementedError("authorizationType 3 is not implemented yet.")
 		else:
 			raise NotImplementedError("This authorizationType was not supported.")
 
