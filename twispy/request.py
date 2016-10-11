@@ -49,3 +49,35 @@ class Request:
 		result = json.loads(request.text)
 
 		return result
+
+	def streaming(self, callback, data=None):
+		method = "GET"
+		url = "https://userstream.twitter.com/1.1/user.json"
+		if not data:
+			data = {
+				"replies": "all",
+				"filter_level": "none",
+				"include_followings_activity": "True",
+				"stall_warnings": "True",
+				"with": "followings"
+			}
+
+		header = makeHeader(method, url, self.uuid, self.deviceId, 0)
+		authorizationData = makeAuthorizationData(self.ck, self.at)
+		signatureBase = makeSignatureBase(method, header, data, authorizationData, self.ck, self.at)
+		signatureBaseString = makeSignatureBaseString(method, url, signatureBase)
+		signingKey = makeSigningKey(self.cs, self.ats)
+		authorizationData["oauth_signature"] = makeOAuthSignature(signingKey, signatureBaseString)
+		header["Authorization"] = makeAuthorizationHeader(authorizationData)
+
+		stream = requests.get(url, params=data, headers=header, stream=True)
+		for line in stream.iter_lines():
+			if not line:
+				continue
+			line = line.decode()
+
+			try:
+				jsonObj = json.loads(line)
+			except:
+				raise Exception("failed to decode json. reserved data was `{}`.".format(line))
+			callback(jsonObj)
