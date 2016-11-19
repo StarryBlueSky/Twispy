@@ -9,17 +9,20 @@ import time
 import urllib.parse
 import uuid
 from collections import OrderedDict
+from typing import Dict
 
-
-def escape(text):
+def escape(text) -> str:
+	"""
+	:param text: str or dict.
+	"""
 	if isinstance(text, dict):
 		text = json.dumps(text, ensure_ascii=False).replace(" ", "")
 	return urllib.parse.quote(text, safe="~")
 
-def getCurrentEpochTime():
+def getCurrentEpochTime() -> int:
 	return int(time.mktime(datetime.datetime.now().timetuple()))
 
-def getUUID():
+def getUUID() -> int:
 	return str(uuid.uuid4()).upper()
 
 def makeHeader(method, url, uuid=None, deviceId=None, headerType=None):
@@ -175,17 +178,16 @@ def makeAuthorizationData(ck, at):
 	authorizationData["oauth_signature_method"] = "HMAC-SHA1"
 	return authorizationData
 
-def makeBasicAuthorizationHeader(ck, cs):
-	return "Basic " + base64.b64encode((ck + ":" + cs).encode()).decode()
+def makeBasicAuthorizationHeader(ck: str, cs: str) -> str:
+	return "Basic {}".format(base64.b64encode("{}:{}".format(ck, cs).encode()).decode())
 
-def makeBearerAuthorizationHeader(token):
-	return "Bearer " + token
+def makeBearerAuthorizationHeader(token: str) -> str:
+	return "Bearer {}".format(token)
 
-def makeSignatureBase(method, header, data, authorizationData, ck, at):
+def makeSignatureBase(method: str, header: Dict, data: Dict, authorizationData: Dict, ck: str, at: str) -> list:
 	signatureBase = []
 	if (method.upper() == "POST" and header["Content-Type"] == "application/x-www-form-urlencoded") or method.upper() != "POST":
-		for key, value in data.items():
-			signatureBase.append([escape(key), escape(value)])
+		signatureBase = [[escape(key), escape(value)] for key, value in data.items()]
 
 	signatureBase.append(["oauth_consumer_key", ck])
 	signatureBase.append(["oauth_nonce", authorizationData["oauth_nonce"]])
@@ -196,17 +198,17 @@ def makeSignatureBase(method, header, data, authorizationData, ck, at):
 	signatureBase.sort()
 	return signatureBase
 
-def makeSignatureBaseString(method, url, signatureBase):
-	return "{}&{}&{}".format(method.upper(), escape(url), escape("&".join(["{}={}".format(key, value) for key, value in signatureBase])))
-
-def makeSigningKey(cs, ats):
+def makeSigningKey(cs: str, ats: str) -> str:
 	return "{}&{}".format(escape(cs), escape(ats))
 
-def makeOAuthSignature(signingKey, signatureBaseString):
+def makeSignatureBaseString(method: str, url: str, signatureBase: list) -> str:
+	return "{}&{}&{}".format(method.upper(), escape(url), escape("&".join(["{}={}".format(key, value) for key, value in signatureBase])))
+
+def makeOAuthSignature(signingKey: str, signatureBaseString: str) -> str:
 	return escape(binascii.b2a_base64(hmac.new(signingKey.encode(), signatureBaseString.encode(), hashlib.sha1).digest())[:-1])
 
-def makeAuthorizationHeader(authorizationData):
+def makeAuthorizationHeaderString(authorizationData: Dict) -> str:
 	return "OAuth " + ", ".join(["{key}=\"{value}\"".format(key=x, value=y) for x, y in authorizationData.items()])
 
-def makePostString(data):
+def makePostString(data: Dict) -> str:
 	return "&".join(["{key}={value}".format(key=escape(x), value=escape(y)) for x, y in data.items()])

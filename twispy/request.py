@@ -27,7 +27,7 @@ class Request:
 			signingKey = makeSigningKey(self.cs, self.ats)
 
 			authorizationData["oauth_signature"] = makeOAuthSignature(signingKey, signatureBaseString)
-			header["Authorization"] = makeAuthorizationHeader(authorizationData)
+			header["Authorization"] = makeAuthorizationHeaderString(authorizationData)
 		elif authorizationType == 1:
 			header["Authorization"] = makeBasicAuthorizationHeader(self.ck, self.cs)
 		elif authorizationType == 2:
@@ -68,7 +68,7 @@ class Request:
 		signatureBaseString = makeSignatureBaseString(method, url, signatureBase)
 		signingKey = makeSigningKey(self.cs, self.ats)
 		authorizationData["oauth_signature"] = makeOAuthSignature(signingKey, signatureBaseString)
-		header["Authorization"] = makeAuthorizationHeader(authorizationData)
+		header["Authorization"] = makeAuthorizationHeaderString(authorizationData)
 
 		stream = requests.get(url, params=data, headers=header, stream=True)
 		for line in stream.iter_lines():
