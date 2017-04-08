@@ -51,7 +51,7 @@ def callback(stream):
 	if "text" in stream:
 		print("{} by @{}".format(stream["text"], stream["user"]["screen_name"]))
 
-	if "event" in stream and "favorite" in stream:
+	if "event" in stream and "favorite" in stream["event"]:
 		print("{} favorited @{}'s `{}`".format(stream["source"]["screen_name"], stream["target"]["screen_name"], stream["target_object"]["text"]))
 
 request.streaming(callback)
