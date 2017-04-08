@@ -5,8 +5,8 @@ from collections import OrderedDict
 
 from twispy.request import Request
 
-with open(os.path.abspath(os.path.dirname(__file__)) + "/api.json") as f:
-	api_dict = json.load(f)
+with open(os.path.abspath(os.path.dirname(__file__)) + "/api.json", "rb") as f:
+	api_dict = json.loads(f.read().decode())
 
 class API(object):
 	__slots__ = list(api_dict.keys()) + ["_do"]
