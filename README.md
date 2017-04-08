@@ -1,6 +1,8 @@
 # Twispy
-Twispyは, **唯一**のTwitter APIエンドポイントに対応した Python製のTwitter APIラッパーです。
+Twispyは, **唯一**の 全Twitter APIエンドポイントに対応した Python製のTwitter APIラッパーです。
 
+
+もし, 動作しないエンドポイントを見つけましたら Issue立てお願いします。
 
 ## Get started
 
@@ -35,8 +37,9 @@ params["twitter:api:api:endpoint"] = "1"
 params["twitter:card"] = "poll4choice_text_only"
 params["twitter:long:duration_minutes"] = 1440
 
+import json
 r = api.cards_create(
-	card_data=params
+	card_data=json.dumps(params)
 )
 r = api.statuses_update(
 	status="投票テスト",
