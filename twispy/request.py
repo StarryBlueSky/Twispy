@@ -1,4 +1,6 @@
 # coding=utf-8
+import threading
+
 import requests
 
 from twispy.utils import *
@@ -50,7 +52,7 @@ class Request:
 
         return result
 
-    def streaming(self, callback=None, data=None):
+    def streaming(self, callback, data=None):
         method = "GET"
         url = "https://userstream.twitter.com/1.1/user.json"
         if not data:
@@ -70,15 +72,17 @@ class Request:
         authorizationData["oauth_signature"] = makeOAuthSignature(signingKey, signatureBaseString)
         header["Authorization"] = makeAuthorizationHeaderString(authorizationData)
 
-        stream = requests.get(url, params=data, headers=header, stream=True)
-        for line in stream.iter_lines():
+        def process(line):
             if not line:
-                continue
+                return
             line = line.decode()
-
             try:
                 jsonObj = json.loads(line)
             except:
                 raise Exception("failed to decode json. reserved data was `{}`.".format(line))
 
-            callback(jsonObj) if callback else self.default_callback(jsonObj)
+            callback(jsonObj)
+
+        stream = requests.get(url, params=data, headers=header, stream=True)
+        for line in stream.iter_lines():
+            threading.Thread(target=process, args=(line, )).start()
