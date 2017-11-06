@@ -6,10 +6,18 @@ Twispyは, **唯一**の 全Twitter APIエンドポイントに対応した Pyth
 
 もし, 動作しないエンドポイントを見つけましたら Issue立てお願いします。
 
+## Intro
+
+### Install & Update
+
+```bash
+pip3 install -e "git+https://github.com/NephyProject/Twispy.git#egg=twispy"
+```
+
 ## Get started
 
 ```python
-from twispy.handler import API
+from twispy import API
 
 # Twitter公式クライアントのConsumer Key, Consumer Secretが好ましいです
 ck = "IQKbtAYlXLripLGPWd0HUA"

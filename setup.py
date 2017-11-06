@@ -10,12 +10,12 @@ with open('LICENSE') as f:
 
 setup(
     name='Twispy',
-    version='0.0.1',
     description='A Lightweight & Full Powered Twitter API Wrapper.',
     long_description=readme,
     author='NephyProject',
     url='https://github.com/NephyProject/Twispy',
     license=li,
     packages=find_packages(exclude=('tests',)),
+    package_data={"twispy": ["api.json"]},
     install_requires=["requests"]
 )
