@@ -1,4 +1,9 @@
 # Twispy
+## 注意: Twispyは非アクティブなプロジェクトです. 今後, Twitterの仕様変更に従うことはありません.
+## 今後は [Penicillin](https://github.com/NephyProject/Penicillin) に注力していきます.
+
+---
+
 Twispyは, **唯一**の 全Twitter APIエンドポイントに対応した Python製のTwitter APIラッパーです。
 
 ライブラリとは分離したJSONファイルにエンドポイント情報を記述して動的にラップしているので `/api.json`を更新するだけで TwitterのAPI仕様変更に対応できるという 大きな特徴があります。
